@@ -154,7 +154,7 @@ int main(void)
   {
 	  switch(event_state[event_index_read]){
 		case EVENT_WAIT:
-			controller.buttons.a = HAL_GPIO_ReadPin(BUTTON0_GPIO_Port, BUTTON0_GPIO_Pin);
+			controller.buttons.a = HAL_GPIO_ReadPin(BUTTON0_GPIO_Port, BUTTON0_Pin);
 			break;
 		case TIM_EVENT_1:
 			HAL_ADC_Start_DMA(&hadc, (uint32_t *)adc_buffer, 2); //Trigger Joystick ADC read
