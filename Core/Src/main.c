@@ -147,7 +147,7 @@ int main(void)
   {
 	  switch(event_state[event_index_read]){
 		case EVENT_WAIT:
-			// Do nothing...
+			asm("NOP");
 			break;
 		case TIM_EVENT_1:
 			HAL_ADC_Start_DMA(&hadc, (uint32_t *)adc_buffer, 2); //Trigger Joystick ADC read
