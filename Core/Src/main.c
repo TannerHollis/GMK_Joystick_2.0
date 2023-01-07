@@ -51,6 +51,8 @@ TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
 
+uint16_t lockout = 0;
+
 extern USBD_HandleTypeDef hUsbDeviceFS;
 
 ADC_HandleTypeDef hadc;
@@ -176,7 +178,17 @@ int main(void)
 			}
 			break;
 		case USB_EVENT_HID_GAMEPAD_UPDATE:
-			Send_HID_Data(&controller);
+			if(lockout < 2000)
+			{
+				if(Send_HID_Data(&controller) == HAL_OK)
+				{
+					lockout = 0;
+				}
+				else
+				{
+					lockout++;
+				}
+			}
 			break;
 	}
 	if(event_index_read != event_index_write){
