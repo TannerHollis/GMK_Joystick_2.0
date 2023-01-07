@@ -22518,11 +22518,11 @@ static void USBD_GetStatus(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
 
 #if ( USBD_SELF_POWERED == 1U)
     pdev->dev_config_status = USB_CONFIG_SELF_POWERED;
- 800984e:	687b      	ldr	r3, [r7, #4]
- 8009850:	2201      	movs	r2, #1
- 8009852:	60da      	str	r2, [r3, #12]
 #else
     pdev->dev_config_status = 0U;
+ 800984e:	687b      	ldr	r3, [r7, #4]
+ 8009850:	2200      	movs	r2, #0
+ 8009852:	60da      	str	r2, [r3, #12]
 #endif
 
     if (pdev->dev_remote_wakeup)
