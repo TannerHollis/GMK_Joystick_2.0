@@ -44,6 +44,10 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+ADC_HandleTypeDef hadc;
+DMA_HandleTypeDef hdma_adc;
+
+TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
 
@@ -153,6 +157,8 @@ int main(void)
 			break;
 		case ADC_EVENT_UPDATE:
 			Joystick_Update(&joystick);
+			controller.joysticks.left.x = joystick.x;
+			controller.joysticks.left.y = joystick.y;
 			break;
 		case USB_EVENT_HID_GAMEPAD_UPDATE:
 			Send_HID_Data(&controller);
