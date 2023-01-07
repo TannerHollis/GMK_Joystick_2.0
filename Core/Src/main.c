@@ -173,10 +173,10 @@ int main(void)
 			controller.joysticks._bits[0] = 0;
 			controller.joysticks._bits[1] = 0;
 			if((val_x > deadzone_x) || (val_x < -deadzone_x)){
-				controller.joysticks._bits[0] += (int16_t)(val_x * -(float)INT16_MAX);
+				controller.joysticks._bits[1] += (int16_t)(val_x * -(float)INT16_MAX);
 			}
 			if((val_y > deadzone_y) || (val_y < -deadzone_y)){
-				controller.joysticks._bits[1] += (int16_t)(val_y * (float)INT16_MAX);
+				controller.joysticks._bits[0] += (int16_t)(val_y * (float)INT16_MAX);
 			}
 			break;
 		case USB_EVENT_HID_GAMEPAD_UPDATE:
