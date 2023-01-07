@@ -132,6 +132,9 @@ int main(void)
 
   HAL_TIM_Base_Start(&htim2);
 
+  HAL_TIM_OC_Start_IT(&htim2, TIM_CHANNEL_1);
+  HAL_TIM_OC_Start_IT(&htim2, TIM_CHANNEL_2);
+
   joystick = Joystick_Init(&adc_buffer[0], &adc_buffer[1]);
 
   /* USER CODE END 2 */
