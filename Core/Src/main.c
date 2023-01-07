@@ -357,7 +357,7 @@ static void MX_TIM2_Init(void)
     Error_Handler();
   }
   __HAL_TIM_ENABLE_OCxPRELOAD(&htim2, TIM_CHANNEL_1);
-  sConfigOC.Pulse = 32000-1;
+  sConfigOC.Pulse = 16000-1;
   if (HAL_TIM_OC_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
