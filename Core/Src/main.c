@@ -89,6 +89,10 @@ void write_next_event_state(State_TypeDef next_state);
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc);
 uint8_t Send_HID_Data(Controller_HandleTypeDef* controller);
 
+extern uint8_t USBD_CUSTOM_HID_SendReport (USBD_HandleTypeDef  *pdev,
+                                    uint8_t *report,
+                                    uint16_t len);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -433,7 +437,7 @@ uint8_t Send_HID_Data(Controller_HandleTypeDef* controller){
 	hid_output_data.joysticks[7] = highByte(controller->joysticks.right.y);
 	hid_output_data.triggers[0] = controller->triggers.left;
 	hid_output_data.triggers[1] = controller->triggers.right;
-	return USBD_CUSTOM_HID_SendReport(hUsbDeviceFS, &hid_output_data, sizeof(hid_output_data)); //Send GMK Controller HID Data
+	return USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&hid_output_data, sizeof(hid_output_data)); //Send GMK Controller HID Data
 }
 
 /* USER CODE END 4 */
