@@ -51,8 +51,6 @@ TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
 
-uint16_t lockout = 0;
-
 extern USBD_HandleTypeDef hUsbDeviceFS;
 
 ADC_HandleTypeDef hadc;
@@ -178,17 +176,7 @@ int main(void)
 			}
 			break;
 		case USB_EVENT_HID_GAMEPAD_UPDATE:
-			if(lockout < 2000)
-			{
-				if(Send_HID_Data(&controller) == HAL_OK)
-				{
-					lockout = 0;
-				}
-				else
-				{
-					lockout++;
-				}
-			}
+			Send_HID_Data(&controller);
 			break;
 	}
 	if(event_index_read != event_index_write){
@@ -282,7 +270,7 @@ static void MX_ADC_Init(void)
   hadc.Init.DiscontinuousConvMode = DISABLE;
   hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc.Init.DMAContinuousRequests = ENABLE;
+  hadc.Init.DMAContinuousRequests = DISABLE;
   if (HAL_ADC_Init(&hadc) != HAL_OK)
   {
     Error_Handler();
