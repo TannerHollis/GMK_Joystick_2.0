@@ -89,7 +89,7 @@ static void MX_ADC_Init(void);
 
 void write_next_event_state(State_TypeDef next_state);
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc);
-void Send_HID_Data(Controller_HandleTypeDef* controller);
+uint8_t Send_HID_Data(Controller_HandleTypeDef* controller);
 
 /* USER CODE END PFP */
 
@@ -431,7 +431,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
 	write_next_event_state(ADC_EVENT_UPDATE);
 }
 
-void Send_HID_Data(Controller_HandleTypeDef* controller){
+uint8_t Send_HID_Data(Controller_HandleTypeDef* controller){
 	hid_output_data.report_id = 1;
 	hid_output_data.buttons[0] = lowByte(controller->buttons._bits);
 	hid_output_data.buttons[1] = highByte(controller->buttons._bits);
@@ -445,7 +445,7 @@ void Send_HID_Data(Controller_HandleTypeDef* controller){
 	hid_output_data.joysticks[7] = highByte(controller->joysticks.right.y);
 	hid_output_data.triggers[0] = controller->triggers.left;
 	hid_output_data.triggers[1] = controller->triggers.right;
-	USBD_CUSTOM_HID_SendReport(hUsbDeviceFS, &hid_output_data, sizeof(hid_output_data)); //Send GMK Controller HID Data
+	return USBD_CUSTOM_HID_SendReport(hUsbDeviceFS, &hid_output_data, sizeof(hid_output_data)); //Send GMK Controller HID Data
 }
 
 /* USER CODE END 4 */
