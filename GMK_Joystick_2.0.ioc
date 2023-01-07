@@ -1,7 +1,7 @@
 #MicroXplorer Configuration settings - do not modify
 ADC.Channel-0\#ChannelRegularConversion=ADC_CHANNEL_0
 ADC.Channel-1\#ChannelRegularConversion=ADC_CHANNEL_1
-ADC.ClockPrescaler=ADC_CLOCK_ASYNC_DIV2
+ADC.ClockPrescaler=ADC_CLOCK_ASYNC_DIV4
 ADC.DiscontinuousConvMode=DISABLE
 ADC.IPParameters=Rank-0\#ChannelRegularConversion,Channel-0\#ChannelRegularConversion,SamplingTime-0\#ChannelRegularConversion,NbrOfConversionFlag,ScanConvMode,DiscontinuousConvMode,Rank-1\#ChannelRegularConversion,Channel-1\#ChannelRegularConversion,SamplingTime-1\#ChannelRegularConversion,NbrOfConversion,ClockPrescaler
 ADC.NbrOfConversion=2
@@ -55,7 +55,7 @@ Mcu.UserConstants=
 Mcu.UserName=STM32L151C8TxA
 MxCube.Version=6.7.0
 MxDb.Version=DB.6.0.70
-NVIC.ADC1_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
+NVIC.ADC1_IRQn=true\:1\:0\:true\:false\:true\:true\:true\:true
 NVIC.BusFault_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:false
 NVIC.DMA1_Channel1_IRQn=true\:0\:0\:false\:false\:true\:false\:true\:true
 NVIC.DebugMonitor_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:false
@@ -67,7 +67,7 @@ NVIC.PendSV_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:false
 NVIC.PriorityGroup=NVIC_PRIORITYGROUP_4
 NVIC.SVC_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:true
 NVIC.SysTick_IRQn=true\:15\:0\:false\:false\:true\:false\:true\:false
-NVIC.TIM2_IRQn=true\:1\:0\:true\:false\:true\:true\:true\:true
+NVIC.TIM2_IRQn=true\:0\:0\:true\:false\:true\:true\:true\:true
 NVIC.USB_LP_IRQn=true\:0\:0\:false\:false\:true\:false\:true\:true
 NVIC.UsageFault_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:false
 PA0-WKUP1.Mode=IN0
