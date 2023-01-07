@@ -398,6 +398,19 @@ void write_next_event_state(State_TypeDef next_state){
 	event_state[event_index_write] = next_state;
 }
 
+void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim){
+	switch(htim->Channel){
+		case HAL_TIM_ACTIVE_CHANNEL_1:
+			write_next_event_state(TIM_EVENT_1);
+			break;
+		case HAL_TIM_ACTIVE_CHANNEL_2:
+			write_next_event_state(TIM_EVENT_2);
+			break;
+		default:
+			break;
+	}
+}
+
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
 	write_next_event_state(ADC_EVENT_UPDATE);
 }
