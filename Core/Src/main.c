@@ -157,8 +157,20 @@ int main(void)
 			break;
 		case ADC_EVENT_UPDATE:
 			Joystick_Update(&joystick);
-			controller.joysticks.left.x = joystick.x;
-			controller.joysticks.left.y = joystick.y;
+			uint8_t invert_x = 1;
+			uint8_t invert_y = 0;
+			float deadzone_x = 0.05f;
+			float deadzone_y = 0.05f;
+			float val_x = invert_x ? -joystick.x.val : joystick.x.val;
+			float val_y = invert_y ? -joystick.y.val : joystick.y.val;
+			controller.joysticks._bits[0] = 0;
+			controller.joysticks._bits[1] = 0;
+			if((val_x > deadzone_x) || (val_x < -deadzone_x)){
+				controller.joysticks._bits[0] += (int16_t)(val_x * -(float)INT16_MAX);
+			}
+			if((val_y > deadzone_y) || (val_y < -deadzone_y)){
+				controller.joysticks._bits[1] += (int16_t)(val_y * (float)INT16_MAX);
+			}
 			break;
 		case USB_EVENT_HID_GAMEPAD_UPDATE:
 			Send_HID_Data(&controller);
