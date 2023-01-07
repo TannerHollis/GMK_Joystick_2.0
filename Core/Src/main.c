@@ -154,7 +154,7 @@ int main(void)
   {
 	  switch(event_state[event_index_read]){
 		case EVENT_WAIT:
-			asm("NOP");
+			controller.buttons.a = HAL_GPIO_ReadPin(BUTTON0_GPIO_Port, BUTTON0_GPIO_Pin);
 			break;
 		case TIM_EVENT_1:
 			HAL_ADC_Start_DMA(&hadc, (uint32_t *)adc_buffer, 2); //Trigger Joystick ADC read
@@ -261,7 +261,7 @@ static void MX_ADC_Init(void)
   /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
   */
   hadc.Instance = ADC1;
-  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV4;
+  hadc.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
   hadc.Init.Resolution = ADC_RESOLUTION_12B;
   hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc.Init.ScanConvMode = ADC_SCAN_ENABLE;
@@ -392,10 +392,17 @@ static void MX_DMA_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  /*Configure GPIO pin : BUTTON0_Pin */
+  GPIO_InitStruct.Pin = BUTTON0_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(BUTTON0_GPIO_Port, &GPIO_InitStruct);
 
 }
 
