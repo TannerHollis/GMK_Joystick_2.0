@@ -95,16 +95,16 @@ static void MX_ADC_Init(void);
 /* USER CODE BEGIN PFP */
 
 void write_next_event_state(State_TypeDef next_state);
-<<<<<<< Updated upstream
+
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc);
 uint8_t Send_HID_Data(Controller_HandleTypeDef* controller);
 
 extern uint8_t USBD_CUSTOM_HID_SendReport(USBD_HandleTypeDef* pdev, uint8_t* report, uint16_t len);
-=======
+
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc);
 extern uint8_t USBD_CUSTOM_HID_SendReport (USBD_HandleTypeDef  *pdev, uint8_t *report, uint16_t len);
 extern USBD_StatusTypeDef USBD_LL_Transmit(USBD_HandleTypeDef *pdev, uint8_t ep_addr, uint8_t *pbuf, uint16_t size);
->>>>>>> Stashed changes
+
 
 /* USER CODE END PFP */
 
@@ -154,7 +154,7 @@ int main(void)
 
 	joystick = Joystick_Init(&adc_buffer[0], &adc_buffer[1]);
 
-<<<<<<< Updated upstream
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -188,10 +188,10 @@ int main(void)
 			controller.joysticks._bits[0] = 0;
 			controller.joysticks._bits[1] = 0;
 			if ((val_x > deadzone_x) || (val_x < -deadzone_x)) {
-				controller.joysticks._bits[1] += (int16_t)(val_x * -(float)INT16_MAX);
+				controller.joysticks.left.y += (int16_t)(val_x * (float)INT16_MAX);
 			}
 			if ((val_y > deadzone_y) || (val_y < -deadzone_y)) {
-				controller.joysticks._bits[0] += (int16_t)(val_y * (float)INT16_MAX);
+				controller.joysticks.left.x += (int16_t)(val_y * (float)INT16_MAX);
 			}
 			hid_output_data.report_id = 1;
 			hid_output_data.buttons[0] = lowByte(controller.buttons._bits);
@@ -468,7 +468,6 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
 	write_next_event_state(ADC_EVENT_UPDATE);
 }
 
-<<<<<<< Updated upstream
 uint8_t Send_HID_Data(Controller_HandleTypeDef* controller) {
 	hid_output_data.report_id = 1;
 	hid_output_data.buttons[0] = lowByte(controller->buttons._bits);
@@ -486,8 +485,6 @@ uint8_t Send_HID_Data(Controller_HandleTypeDef* controller) {
 	return USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, (uint8_t*)&hid_output_data, sizeof(hid_output_data)); //Send GMK Controller HID Data
 }
 
-=======
->>>>>>> Stashed changes
 /* USER CODE END 4 */
 
 /**
