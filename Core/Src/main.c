@@ -210,11 +210,11 @@ int main(void)
 		case USB_EVENT_HID_GAMEPAD_UPDATE:
 			if(USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&hid_output_data, sizeof(hid_output_data)) == USBD_OK)
 			{
-				write_next_event_state(USB_EVENT_HID_GAMEPAD_UPDATE);
 				failed_tx = 0;
 			}
 			else
 			{
+				write_next_event_state(USB_EVENT_HID_GAMEPAD_UPDATE);
 				failed_tx++;
 				failed_tx_max = (failed_tx > failed_tx_max) ? failed_tx : failed_tx_max;
 				failed_tx_avg = (failed_tx_max + failed_tx) / 2;
