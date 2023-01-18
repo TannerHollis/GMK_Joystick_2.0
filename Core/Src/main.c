@@ -214,7 +214,7 @@ int main(void)
 			}
 			else
 			{
-				write_next_event_state(USB_EVENT_HID_GAMEPAD_UPDATE);
+				//write_next_event_state(USB_EVENT_HID_GAMEPAD_UPDATE);
 				failed_tx++;
 				failed_tx_max = (failed_tx > failed_tx_max) ? failed_tx : failed_tx_max;
 				failed_tx_avg = (failed_tx_max + failed_tx) / 2;
