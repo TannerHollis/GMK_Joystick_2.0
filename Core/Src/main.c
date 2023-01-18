@@ -179,7 +179,7 @@ int main(void)
 			break;
 		case ADC_EVENT_UPDATE:
 			Joystick_Update(&joystick);
-			uint8_t invert_x = 1;
+			uint8_t invert_x = 0;
 			uint8_t invert_y = 0;
 			float deadzone_x = 0.05f;
 			float deadzone_y = 0.05f;

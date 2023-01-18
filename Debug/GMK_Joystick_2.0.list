@@ -1066,8 +1066,8 @@ int main(void)
 			Joystick_Update(&joystick);
  8000b94:	486a      	ldr	r0, [pc, #424]	; (8000d40 <main+0x288>)
  8000b96:	f000 fcb1 	bl	80014fc <Joystick_Update>
-			uint8_t invert_x = 1;
- 8000b9a:	2301      	movs	r3, #1
+			uint8_t invert_x = 0;
+ 8000b9a:	2300      	movs	r3, #0
  8000b9c:	f887 3056 	strb.w	r3, [r7, #86]	; 0x56
 			uint8_t invert_y = 0;
  8000ba0:	2300      	movs	r3, #0
